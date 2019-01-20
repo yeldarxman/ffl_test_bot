@@ -1,6 +1,6 @@
-package helpers.connector;
+package helpers.connector.egov;
 
-public class EgovCurrency {
+public class EgovExchangeRate {
     private String id;
     private String name_kaz;
     private String edinica_izmerenia;
@@ -9,9 +9,9 @@ public class EgovCurrency {
     private String kurs;
     private String kod;
 
-    public EgovCurrency(){}
+    public EgovExchangeRate(){}
 
-    public EgovCurrency(String id, String name_kaz, String edinica_izmerenia, String sootnowenie, String name_rus, String kurs, String kod) {
+    public EgovExchangeRate(String id, String name_kaz, String edinica_izmerenia, String sootnowenie, String name_rus, String kurs, String kod) {
         this.id = id;
         this.name_kaz = name_kaz;
         this.edinica_izmerenia = edinica_izmerenia;

@@ -1,5 +1,7 @@
-import helpers.connector.EgovCurrencyConnector;
-import helpers.connector.exception.EgovConnectorException;
+import helpers.connector.base.BaseConnector;
+import helpers.connector.custom.CustomServerConnector;
+import helpers.connector.egov.EgovCurrencyConnector;
+import helpers.connector.base.exception.BaseConnectorException;
 import models.CurrencyType;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -14,13 +16,13 @@ import java.util.List;
 
 public class FFLTestBot extends TelegramLongPollingBot {
 
-    private EgovCurrencyConnector connector;
+    private BaseConnector connector;
     private static String START = "/start";
     private static String GET_EXCHANGE_RATE = "/get_exchange_rate";
 
 
     public FFLTestBot() {
-        connector = new EgovCurrencyConnector();
+        connector = new CustomServerConnector();
     }
 
     public void onUpdateReceived(Update update) {
@@ -58,7 +60,7 @@ public class FFLTestBot extends TelegramLongPollingBot {
         try {
             BigDecimal exchangeRate = connector.getCurrentExchangeRateFor(CurrencyType.USD);
             result = exchangeRate.toString();
-        } catch (EgovConnectorException e) {
+        } catch (BaseConnectorException e) {
             result = e.getMessage();
         }
 
